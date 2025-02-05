@@ -216,15 +216,11 @@ const Technologies = () => {
                 className="absolute inset-0 pointer-events-none"
                 style={{
                     background: `
-                        radial-gradient(
-                            circle at top center,
-                            hsla(var(--primary)/0.1) 0%,
-                            hsla(var(--background)) 50%
-                        ),
-                        radial-gradient(
-                            circle at bottom center,
-                            hsla(var(--secondary)/0.1) 0%,
-                            hsla(var(--background)) 50%
+                        linear-gradient(to bottom,
+                            hsl(var(--background)) 0%,
+                            hsla(var(--primary)/0.05) 30%,
+                            hsla(var(--secondary)/0.05) 50%,
+                            hsla(var(--background)) 70%
                         )
                     `
                 }}
@@ -232,8 +228,10 @@ const Technologies = () => {
 
             {/* Animated Background Elements */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000" />
+                {/* Top glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-[20rem] bg-primary/10 rounded-full blur-3xl opacity-20" />
+                {/* Bottom glow */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[40rem] h-[20rem] bg-secondary/10 rounded-full blur-3xl opacity-20" />
             </div>
 
             <motion.div
