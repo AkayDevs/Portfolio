@@ -16,6 +16,7 @@ export default function Hero() {
                         duration: 0.8,
                         ease: "easeInOut",
                     }}
+                    viewport={{ once: true}}
                     className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
                 >
                     <span className="text-gradient">AI Engineer</span>{" "}
@@ -30,6 +31,7 @@ export default function Hero() {
                         duration: 0.8,
                         ease: "easeInOut",
                     }}
+                    viewport={{ once: true}}
                     className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto"
                 >
                     Specializing in Generative AI, Computer Vision, and Natural Language Processing
@@ -42,6 +44,7 @@ export default function Hero() {
                         duration: 0.8,
                         ease: "easeInOut",
                     }}
+                    viewport={{ once: true}}
                     className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6"
                 >
                     <InteractiveHoverButton
