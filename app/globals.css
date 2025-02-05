@@ -92,17 +92,23 @@ body {
 @layer components {
   .neon-glow {
     @apply relative;
-    text-shadow: 0 0 10px theme('colors.primary.DEFAULT'),
-                 0 0 20px theme('colors.primary.DEFAULT'),
-                 0 0 30px theme('colors.primary.DEFAULT');
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.3),
+                 0 0 10px rgba(0, 255, 255, 0.2);
   }
   
   .hover-glow {
     @apply transition-all duration-300;
+    box-shadow: 0 0 0 rgba(0, 255, 255, 0);
   }
   
   .hover-glow:hover {
-    @apply neon-glow scale-105;
+    @apply scale-[1.02];
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1),
+                0 0 20px rgba(0, 255, 255, 0.05);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary/90 to-secondary/90;
   }
 }
 
