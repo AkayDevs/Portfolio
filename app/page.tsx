@@ -1,9 +1,10 @@
 import { Particles } from "@/components/home/particle-background";
 import Hero from "@/components/home/hero";
+import Expertise from "@/components/home/expertise";
 
 export default function Home() {
   return (
-    <main className="min-h-screen relative">
+    <main className="relative">
       {/* Particle Background */}
       <Particles
         quantity={75}
@@ -18,11 +19,14 @@ export default function Home() {
       />
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-32 relative z-10">
+      <div className="relative z-10">
         {/* Hero Section */}
-        <section className="min-h-[90vh] flex flex-col justify-center items-start">
+        <section className="min-h-[90vh] flex flex-col justify-center">
           <Hero />
         </section>
+
+        {/* Expertise Section */}
+        <Expertise />
       </div>
     </main>
   );
