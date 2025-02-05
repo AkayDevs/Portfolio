@@ -48,10 +48,6 @@ export default function Hero() {
                         text="View Projects"
                         className="border-primary/50 hover:border-primary w-full sm:w-auto"
                     />
-                    <InteractiveHoverButton
-                        text="Contact Me"
-                        className="border-primary/20 hover:border-primary/50 w-full sm:w-auto"
-                    />
                 </motion.div>
             </div>
         </LampContainer>
