@@ -18,6 +18,9 @@ export const cloudProps: Omit<ICloud, "children"> = {
       alignItems: "center",
       width: "100%",
       height: "100%",
+      padding: "1rem",
+      borderRadius: "1rem",
+      background: "transparent",
     },
   },
   options: {
@@ -31,39 +34,30 @@ export const cloudProps: Omit<ICloud, "children"> = {
     clickToFront: 500,
     tooltipDelay: 0,
     outlineColour: "#0000",
-    maxSpeed: 0.04,
-    minSpeed: 0.02,
-    dragControl: true,
-    shuffleTags: true,
-    frontSelect: true,
-    textHeight: 14,
-    dragThreshold: 3,
-    fadeIn: 800,
-    decel: 0.95,
-    radiusX: 1,
-    radiusY: 1,
-    radiusZ: 1,
+    maxSpeed: 0.02,
+    minSpeed: 0.01,
+    decel: 0.98,
+    radiusX: 0.7,
+    radiusY: 0.7,
+    radiusZ: 0.7,
     stretchX: 1,
     stretchY: 1,
-    offsetX: 0,
-    offsetY: 0,
-    shadow: "#000000",
-    shadowBlur: 0,
-    shadowOffset: [0, 0],
-    textAlign: "centre",
+    shuffleTags: true,
+    frontSelect: true,
+    textHeight: 24,
+    dragControl: true,
+    dragThreshold: 4,
     textColour: "hsl(var(--primary))",
     weight: true,
+    weightMode: "size",
     weightFrom: null,
+    weightSize: 1.5,
     weightGradient: {
       0: "hsl(var(--primary))",
       0.33: "hsl(var(--primary))",
       0.66: "hsl(var(--secondary))",
       1: "hsl(var(--secondary))"
     },
-    weightMode: "size",
-    weightSize: 1,
-    weightSizeMax: null,
-    weightSizeMin: null,
   },
 }
 
@@ -77,7 +71,7 @@ export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
     bgHex,
     fallbackHex,
     minContrastRatio,
-    size: 84,
+    size: 96,
     aProps: {
       href: undefined,
       target: undefined,
@@ -85,27 +79,31 @@ export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
       onClick: (e: any) => e.preventDefault(),
       style: {
         color: "hsl(var(--primary))",
-        transition: "all 0.3s ease",
+        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+        opacity: 0.8,
       },
       onMouseEnter: (e: any) => {
         e.currentTarget.style.color = "hsl(var(--secondary))"
-        e.currentTarget.style.transform = "scale(1.1)"
+        e.currentTarget.style.transform = "scale(1.2) rotate(8deg)"
+        e.currentTarget.style.opacity = "1"
       },
       onMouseLeave: (e: any) => {
         e.currentTarget.style.color = "hsl(var(--primary))"
-        e.currentTarget.style.transform = "scale(1)"
+        e.currentTarget.style.transform = "scale(1) rotate(0deg)"
+        e.currentTarget.style.opacity = "0.8"
       },
     },
   })
 }
 
 export type DynamicCloudProps = {
-  iconSlugs: string[]
+  iconSlugs: string[];
+  children?: (renderedIcon: React.ReactNode, slug: string) => React.ReactNode;
 }
 
 type IconData = Awaited<ReturnType<typeof fetchSimpleIcons>>
 
-export function IconCloud({ iconSlugs }: DynamicCloudProps) {
+export function IconCloud({ iconSlugs, children }: DynamicCloudProps) {
   const [data, setData] = useState<IconData | null>(null)
   const { theme } = useTheme()
 
@@ -116,18 +114,22 @@ export function IconCloud({ iconSlugs }: DynamicCloudProps) {
   const renderedIcons = useMemo(() => {
     if (!data) return null
 
-    return Object.values(data.simpleIcons).map((icon) =>
-      renderCustomIcon(icon, theme || "light"),
-    )
-  }, [data, theme])
+    return Object.values(data.simpleIcons).map((icon) => {
+      const renderedIcon = renderCustomIcon(icon, theme || "light");
+      if (children) {
+        return children(renderedIcon, icon.slug);
+      }
+      return renderedIcon;
+    })
+  }, [data, theme, children])
 
   return (
     <div className="relative group">
-      {/* Glow effect */}
-      <div className="absolute inset-0 bg-primary/5 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Container Background with Gradient Border */}
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/20 via-secondary/20 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
 
-      {/* Icon cloud */}
-      <div className="relative">
+      {/* Main Container */}
+      <div className="relative rounded-xl border border-primary/10 bg-background/50 backdrop-blur-sm transition-all duration-500 group-hover:border-primary/30 group-hover:bg-background/60">
         <Cloud {...cloudProps}>
           <>{renderedIcons}</>
         </Cloud>

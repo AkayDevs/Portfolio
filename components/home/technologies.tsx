@@ -158,7 +158,7 @@ const itemVariants = {
     }
 };
 
-const TechnologyDialog = ({ tech }: { tech: Technology }) => (
+const TechnologyDialog = ({ tech, children }: { tech: Technology, children: React.ReactNode }) => (
     <MorphingDialog
         transition={{
             type: "spring",
@@ -166,10 +166,8 @@ const TechnologyDialog = ({ tech }: { tech: Technology }) => (
             duration: 0.25,
         }}
     >
-        <MorphingDialogTrigger className="cursor-pointer p-4 rounded-lg hover:bg-primary/5 transition-colors duration-500">
-            <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 flex items-center justify-center hover:scale-110 transition-transform">
-                <IconCloud iconSlugs={[tech.slug]} />
-            </div>
+        <MorphingDialogTrigger className="cursor-pointer">
+            {children}
         </MorphingDialogTrigger>
         <MorphingDialogContainer>
             <MorphingDialogContent
@@ -212,19 +210,31 @@ const TechnologyDialog = ({ tech }: { tech: Technology }) => (
 
 const Technologies = () => {
     return (
-        <section className="relative py-32">
+        <section className="relative py-32 overflow-hidden">
             {/* Background Gradient */}
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
                     background: `
-            linear-gradient(to bottom,
-              hsl(var(--background)) 0%,
-              hsla(var(--secondary)/0.1) 30%,
-              hsla(var(--background)) 70%
-            )`
+                        radial-gradient(
+                            circle at top center,
+                            hsla(var(--primary)/0.1) 0%,
+                            hsla(var(--background)) 50%
+                        ),
+                        radial-gradient(
+                            circle at bottom center,
+                            hsla(var(--secondary)/0.1) 0%,
+                            hsla(var(--background)) 50%
+                        )
+                    `
                 }}
             />
+
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000" />
+            </div>
 
             <motion.div
                 variants={containerVariants}
@@ -237,28 +247,49 @@ const Technologies = () => {
                     variants={itemVariants}
                     className="relative z-20 text-center mb-20"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 relative">
-                        <span className="text-gradient bg-clip-text">Technologies & Tools</span>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 relative inline-block">
+                        <span className="text-gradient">Technologies & Tools</span>
+                        {/* Decorative underline */}
+                        <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary/50 via-secondary/50 to-primary/50 blur-sm" />
+                        <div className="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-primary via-secondary to-primary" />
                     </h2>
-                    <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto">
+                    <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto mt-8">
                         Leveraging cutting-edge technologies to build innovative AI solutions and robust applications.
                     </p>
                 </motion.div>
 
                 <motion.div
                     variants={itemVariants}
-                    className="relative w-full min-h-[800px] rounded-xl border border-primary/10 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 p-8"
+                    className="relative mx-auto max-w-5xl"
                 >
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
-                        {technologies.map((tech) => (
-                            <motion.div
-                                key={tech.slug}
-                                variants={itemVariants}
-                                className="flex items-center justify-center"
-                            >
-                                <TechnologyDialog tech={tech} />
-                            </motion.div>
-                        ))}
+                    {/* Glass Card Container */}
+                    <div className="relative rounded-2xl border border-primary/10 bg-background/40 backdrop-blur-sm shadow-2xl">
+                        {/* Inner Glow */}
+                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                        {/* Content Container */}
+                        <div className="relative p-8 md:p-12">
+                            {/* Cloud Container */}
+                            <div className="w-full aspect-[16/10] min-h-[500px] md:min-h-[600px]">
+                                <IconCloud iconSlugs={technologies.map(tech => tech.slug)}>
+                                    {(renderedIcon: React.ReactNode, slug: string) => {
+                                        const tech = technologies.find(t => t.slug === slug);
+                                        if (!tech) return renderedIcon;
+                                        return (
+                                            <TechnologyDialog key={slug} tech={tech}>
+                                                {renderedIcon}
+                                            </TechnologyDialog>
+                                        );
+                                    }}
+                                </IconCloud>
+                            </div>
+                        </div>
+
+                        {/* Decorative Corner Elements */}
+                        <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-primary/20 rounded-tl-2xl" />
+                        <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-primary/20 rounded-tr-2xl" />
+                        <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-primary/20 rounded-bl-2xl" />
+                        <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-primary/20 rounded-br-2xl" />
                     </div>
                 </motion.div>
             </motion.div>
