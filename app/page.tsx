@@ -4,6 +4,7 @@ import Expertise from "@/components/home/expertise";
 import Experience from "@/components/home/experience";
 import Projects from "@/components/home/projects";
 import Technologies from "@/components/home/technologies";
+import Contact from "@/components/home/contact";
 
 export default function Home() {
   return (
@@ -40,7 +41,8 @@ export default function Home() {
         {/* Technologies Section */}
         <Technologies />
 
-        
+        {/* Contact Section */}
+        <Contact />
       </div>
     </main>
   );
