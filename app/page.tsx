@@ -3,6 +3,7 @@ import Hero from "@/components/home/hero";
 import Expertise from "@/components/home/expertise";
 import Experience from "@/components/home/experience";
 import Projects from "@/components/home/projects";
+import Technologies from "@/components/home/technologies";
 
 export default function Home() {
   return (
@@ -35,6 +36,11 @@ export default function Home() {
 
         {/* Projects Section */}
         <Projects />
+
+        {/* Technologies Section */}
+        <Technologies />
+
+        
       </div>
     </main>
   );
