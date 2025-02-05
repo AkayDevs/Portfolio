@@ -21,7 +21,7 @@ export default function Home() {
       {/* Main Content */}
       <div className="relative z-10">
         {/* Hero Section */}
-        <section className="min-h-[90vh] flex flex-col justify-center">
+        <section className="min-h-screen flex items-center justify-center">
           <Hero />
         </section>
 

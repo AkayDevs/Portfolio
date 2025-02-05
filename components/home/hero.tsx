@@ -7,7 +7,7 @@ import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button
 export default function Hero() {
     return (
         <LampContainer className="bg-transparent">
-            <div className="container mx-auto px-4 text-center">
+            <div className="container mx-auto px-4 text-center mt-60">
                 <motion.h1
                     initial={{ opacity: 0.5, y: 100 }}
                     whileInView={{ opacity: 1, y: 0 }}
