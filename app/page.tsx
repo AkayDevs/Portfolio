@@ -1,6 +1,7 @@
 import { Particles } from "@/components/home/particle-background";
 import Hero from "@/components/home/hero";
 import Expertise from "@/components/home/expertise";
+import Experience from "@/components/home/experience";
 
 export default function Home() {
   return (
@@ -27,6 +28,9 @@ export default function Home() {
 
         {/* Expertise Section */}
         <Expertise />
+
+        {/* Experience Section */}
+        <Experience />
       </div>
     </main>
   );
