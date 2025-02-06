@@ -43,7 +43,8 @@ const clientTestimonials = [
             name: "Sarah Johnson",
             role: "Product Manager",
             image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80"
-        }
+        },
+        href: "https://twitter.com/sarahjohnson"
     },
     {
         text: "The AI solutions implemented have transformed our workflow. Highly recommend for any machine learning projects.",
@@ -51,7 +52,8 @@ const clientTestimonials = [
             name: "Michael Chen",
             role: "Tech Lead",
             image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80"
-        }
+        },
+        href: "https://twitter.com/michaelchen"
     },
     {
         text: "Exceptional problem-solving skills and a great communicator. Delivered our project ahead of schedule.",
@@ -59,7 +61,8 @@ const clientTestimonials = [
             name: "Emily Rodriguez",
             role: "CTO",
             image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80"
-        }
+        },
+        href: "https://twitter.com/emilyrodriguez"
     },
     {
         text: "The computer vision system developed has significantly improved our quality control process. Outstanding work!",
@@ -67,9 +70,10 @@ const clientTestimonials = [
             name: "David Kim",
             role: "Operations Director",
             image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80"
-        }
+        },
+        href: "https://twitter.com/davidkim"
     }
-]
+];
 
 export default function ProjectsPage() {
     const [selectedCategory, setSelectedCategory] = useState<string>("All");
