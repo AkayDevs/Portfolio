@@ -97,7 +97,7 @@ const Particles: React.FC<ParticlesProps> = ({
         return () => {
             window.removeEventListener("resize", initCanvas)
         }
-    }, [color, secondaryColor])
+    }, [color, secondaryColor, quantity, staticity, ease, particleSize, connectParticles, connectDistance, velocityRange])
 
     useEffect(() => {
         onMouseMove()

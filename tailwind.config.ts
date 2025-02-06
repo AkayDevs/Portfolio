@@ -106,7 +106,11 @@ export default {
 				'slide-down': {
 					'0%': { transform: 'translateY(-100%)', opacity: '0' },
 					'100%': { transform: 'translateY(0)', opacity: '1' }
-				}
+				},
+				'spin-slow': {
+					from: { transform: 'rotate(0deg)' },
+					to: { transform: 'rotate(360deg)' }
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -114,7 +118,8 @@ export default {
 				'glow': 'glow 2s ease-in-out infinite',
 				'float': 'float 6s ease-in-out infinite',
 				'slide-up': 'slide-up 0.5s ease-out',
-				'slide-down': 'slide-down 0.5s ease-out'
+				'slide-down': 'slide-down 0.5s ease-out',
+				'spin-slow': 'spin-slow 8s linear infinite',
 			},
 			backdropBlur: {
 				xs: '2px'
